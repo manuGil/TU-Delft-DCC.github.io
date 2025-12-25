@@ -13,12 +13,12 @@ class QuartoIndexer:
             path=persist_directory,
             settings = Settings(
                 anonymized_telemetry=False,
-                allow_resets=True
+                allow_reset=True
             )
         ) 
 
         # Initialize embeding model
-        self.embedder = SentenceTransformer('all_MiniML-L6-v2')
+        self.embedder = SentenceTransformer('all-MiniLM-L6-v2')
 
         # Get or create collection
         self.collection = self.client.get_or_create_collection(

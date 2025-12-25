@@ -3,7 +3,7 @@
 from parser_quarto import QuartoParser
 from indexer import QuartoIndexer
 
-def build_index(docs_path: str, persist_directory: str ="./chormadb"):
+def build_index(docs_path: str, persist_directory: str ="./chromadb"):
     """Build the ChromaDB index from Quarto documentation"""
 
     # Parse all documentation files
@@ -15,8 +15,8 @@ def build_index(docs_path: str, persist_directory: str ="./chormadb"):
 
     # Create index
     print("\nBuilding ChromaDB index...")
-    # indexer = QuartoIndexer(persist_directory)
-    # indexer.index_documents(chunks)
+    indexer = QuartoIndexer(persist_directory)
+    indexer.index_documents(chunks)
 
     # print statistics
     stats = indexer.get_stats()
@@ -28,7 +28,7 @@ def build_index(docs_path: str, persist_directory: str ="./chormadb"):
 
 
 if __name__ == '__main__':
-    DOCS_PATH = '../docs'
+    DOCS_PATH = '/Users/mgarciaalvarez/devel/dcc-guides/docs'
 
     indexer = build_index(DOCS_PATH)
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     results = indexer.search("How do a renew SSL certificates?", n_results=3)
 
     for i, (doc, metadata) in enumerate(zip(results['documents'][0],
-                                            results['metadata'][0])):
+                                            results['metadatas'][0])):
         print(f"\nResult {i+1}:")
         print(f"File: {metadata['file']}")
         print(f"Section: {metadata['section_header']}")

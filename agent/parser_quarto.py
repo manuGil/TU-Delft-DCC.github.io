@@ -71,6 +71,10 @@ class QuartoParser:
         frontmatter, body = self.extract_yaml_frontmatter(content)
         sections = self.split_by_headers(body)
         
+        # Create unique identifier from relative path
+        relative_path = filepath.relative_to(self.docs_path)
+        file_id = str(relative_path).replace('/', '_').replace('.md', '').replace('.qmd', '')
+        
         chunks = []
         for i, section in enumerate(sections):
             if not section["content"].strip():
@@ -82,7 +86,7 @@ class QuartoParser:
                 "section_header": section["header"],
                 "section_level": section["level"],
                 "content": section["content"],
-                "chunk_id": f"{filepath.stem}_{i}",
+                "chunk_id": f"{file_id}_{i}",
                 "metadata": frontmatter
             }
             chunks.append(chunk)

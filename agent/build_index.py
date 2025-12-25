@@ -3,7 +3,7 @@
 from parser_quarto import QuartoParser
 from indexer import QuartoIndexer
 
-def build_index(docs_path: str, persist_directory: str ="./chromadb"):
+def build_index(docs_path: str, persist_directory: str ="./chroma_db"):
     """Build the ChromaDB index from Markdown documentation"""
 
     # Parse all documentation files

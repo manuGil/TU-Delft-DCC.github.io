@@ -4,10 +4,10 @@ from parser_quarto import QuartoParser
 from indexer import QuartoIndexer
 
 def build_index(docs_path: str, persist_directory: str ="./chromadb"):
-    """Build the ChromaDB index from Quarto documentation"""
+    """Build the ChromaDB index from Markdown documentation"""
 
     # Parse all documentation files
-    print("Parsing quarto doumentation....")
+    print("Parsing Markdown doumentation....")
     parser = QuartoParser(docs_path)
     chunks = parser.parse_all_files()
 

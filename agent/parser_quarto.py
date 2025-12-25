@@ -89,12 +89,12 @@ class QuartoParser:
 
         return chunks
     def parse_all_files(self) -> List[Dict]:
-        """Parse all .qmd files in the documentation directory."""
+        """Parse all .md files in the documentation directory."""
 
         all_chunks = []
         excluded_dirs = {'_archived', 'img'}
         
-        for filepath in self.docs_path.rglob('*.qmd'):
+        for filepath in self.docs_path.rglob('*.md'):
             
             # skip files in excluded directories
             if any(part.startswith('.') or part.startswith('_') or part in excluded_dirs for part in filepath.parts):

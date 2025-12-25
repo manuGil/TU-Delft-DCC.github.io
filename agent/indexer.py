@@ -1,5 +1,5 @@
 """
-Indexer for DCC guides parsed from Quarto files.
+Indexer for DCC guides parsed from Markdown files.
 """
 
 import chromadb
@@ -22,8 +22,8 @@ class QuartoIndexer:
 
         # Get or create collection
         self.collection = self.client.get_or_create_collection(
-            name= "quarto_docs",
-            metadata={"description": "Quarto documentation chunks"}
+            name= "guides_docs",
+            metadata={"description": "Markdown documentation chunks"}
         )
     
     def create_embedding_text(self, chunk: Dict) -> str:
@@ -99,7 +99,7 @@ class QuartoIndexer:
         results = self.collection.query(
             query_embeddings=[query_embedding],
             n_results=n_results,
-            where=filter_metadata # e.g. {"file": "installation.qmd"}
+            where=filter_metadata # e.g. {"file": "installation.md"}
         )
 
         return results

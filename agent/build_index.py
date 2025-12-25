@@ -1,9 +1,14 @@
 """One type set up"""
 
+from pathlib import Path
 from parser_quarto import QuartoParser
 from indexer import QuartoIndexer
 
-def build_index(docs_path: str, persist_directory: str ="./chroma_db"):
+# Use project root for chroma_db
+SCRIPT_DIR = Path(__file__).parent.resolve()
+DEFAULT_CHROMA_PATH = str(SCRIPT_DIR.parent / "chroma_db")
+
+def build_index(docs_path: str, persist_directory: str = DEFAULT_CHROMA_PATH):
     """Build the ChromaDB index from Markdown documentation"""
 
     # Parse all documentation files

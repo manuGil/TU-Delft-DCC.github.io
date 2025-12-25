@@ -7,15 +7,20 @@ import asyncio
 import os
 import signal
 import sys
+from pathlib import Path
 from fastmcp import FastMCP
-from indexer import QuartoIndexer
 import json
+from indexer import QuartoIndexer
 
-# initialize indexer
-indexer = QuartoIndexer(persist_directory="/Users/mgarciaalvarez/devel/dcc-guides/chroma_db")
+# Add script directory to path for imports
+SCRIPT_DIR = Path(__file__).parent.resolve()
+sys.path.insert(0, str(SCRIPT_DIR))
+
+# initialize indexer with path relative to script location
+CHROMA_PATH = SCRIPT_DIR.parent / "chroma_db"
+indexer = QuartoIndexer(persist_directory=str(CHROMA_PATH))
 
 mcp = FastMCP("agent", "An AI agent that helps users to find information on the DCC guides.")
-
 
 @mcp.tool()
 def search_documentation(query:str, n_results: int = 5):
@@ -35,7 +40,12 @@ def search_documentation(query:str, n_results: int = 5):
     results = indexer.search(query, n_results=n_results)
 
     # format results for Claude
-    formatted_results =[]
+    formatted_results = []
+    
+    # Handle empty results
+    if not results['documents'] or not results['documents'][0]:
+        return json.dumps([])
+    
     for doc, metadata, distance in zip(
         results['documents'][0],
         results['metadatas'][0],
@@ -45,8 +55,8 @@ def search_documentation(query:str, n_results: int = 5):
             "file": metadata['file'],
             "title": metadata['title'],
             'section': metadata['section_header'],
-            'contnet': doc,
-            'relevance_score': round(1- distance, 3)
+            'content': doc,
+            'relevance_score': round(1 - distance, 3)
         })
     
     return json.dumps(formatted_results, indent=2)
@@ -64,7 +74,7 @@ def get_documentation_stats() -> str:
     stats = indexer.get_stats()
     return json.dumps(stats, indent=2)
 
-@mcp.tool
+@mcp.tool()
 def search_by_file(filename: str, query: str = '', n_results: int =3) -> str:
     """
     Search within a specific documentation file

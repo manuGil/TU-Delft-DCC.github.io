@@ -14,7 +14,7 @@ An AI assistant for the DCC Guides.
    ```
 
 ## Indexing Documents
-The RAG system needs to index the documents before being able to answer questions based on them. To index documents, run the following command:
+The RAG system needs to index the documents before being able to answer questions based on them. To index documents, run the following command (internet connection is required to download the embedding model):
 
 ```bash
 python ./src/guia/utils/build_index.py

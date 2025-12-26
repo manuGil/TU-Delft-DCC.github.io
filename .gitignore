@@ -15,6 +15,9 @@
 .Ruserdata
 .Rproj.user/
 
+# AI relates
+**/chroma*
+
 # IDE
 .vscode/
 

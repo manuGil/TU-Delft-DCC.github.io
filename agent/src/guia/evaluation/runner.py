@@ -3,7 +3,9 @@ A runner for evaluation the perfomance of the assistant
 """
 
 import json
+import os
 from pathlib import Path
+from dotenv import load_dotenv
 from guia.indexer import QuartoIndexer
 from guia.evaluation.test_dataset import TestDataset, create_sample_dataset
 from guia.evaluation.retrieval_metrics import RetrievalEvaluator
@@ -12,6 +14,11 @@ from guia.evaluation.perfomance_monitor import PerfomanceMonitor
 import argparse
 import sys
 
+# Load environment variables from .env file
+load_dotenv()
+
+
+
 def run_full_evaluation(
         indexer: QuartoIndexer,
         test_dataset : TestDataset, 
@@ -19,6 +26,10 @@ def run_full_evaluation(
         anthropic_api_key: str | None = None
 ):
     """ Run complete evaluation suite"""
+    # Get API key from environment if not provided
+    if anthropic_api_key is None:
+        anthropic_api_key = os.getenv('ANTHROPIC_API_KEY')
+    
     output_path = Path(output_dir)
     output_path.mkdir(exist_ok=True)
 
@@ -220,6 +231,7 @@ def generate_html_report(output_path, retrieval_results, e2e_results, perf_stats
         f.write(html)
 
 if __name__ == '__main__':
+
     parser = argparse.ArgumentParser(description='Evaluate RAG System')
     parser.add_argument('--test-data', default='test_dataset.json', help='Path to test dataset')
     parser.add_argument('--output-dir', default='./evaluation_results', help='Output directory')
@@ -240,7 +252,6 @@ if __name__ == '__main__':
 
     # initialize indexer with path relative to script location
     CHROMA_PATH = SCRIPT_DIR.parent / "chroma_db"
-    print(f"CHROMA DIR: {CHROMA_PATH}")
     indexer = QuartoIndexer(persist_directory=str(CHROMA_PATH))
 
     # Load test dataset

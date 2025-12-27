@@ -114,10 +114,10 @@ Responde in JSON format:
     "explanation": <brief explanation>,
 }}"""
 
-        response = self.client.message.create(
-            mdoel="claude-sonnet-4-20250514",
+        response = self.client.messages.create(
+            model="claude-sonnet-4-20250514",
             max_tokens=500,
-            message=[{"role": "user", "content": judge_prompt}]
+            messages=[{"role": "user", "content": judge_prompt}]
         )
 
         try:

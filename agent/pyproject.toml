@@ -20,3 +20,7 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/guia"]
+
+# add cli entry point
+# [project.scripts]
+# guia = "guia.evaluation.runner"

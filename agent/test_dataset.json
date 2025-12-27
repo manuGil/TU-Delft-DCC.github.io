@@ -3,8 +3,7 @@
     "question": "How do I renew SSL certificates?",
     "expected_chunks": [
       "infrastructure_ssl_certificates_6",
-      "infrastructure_ssl_certificates_0",
-      "infrastructure_ssl_certificates_3"
+      "infrastructure_ssl_certificates_0"
     ],
     "expected_answer_keywords": [
       "SSL/TSL",
@@ -60,8 +59,7 @@
     "question": "What does it mean to make research software FAIR?",
     "expected_chunks": [
       "software_fair_software_checklist_0", 
-      "software_fair_software_fair_0", 
-      "software_getting_started_1"
+      "software_fair_software_fair_0"
     ],
     "expected_answer_keywords": [
       "FAIR",

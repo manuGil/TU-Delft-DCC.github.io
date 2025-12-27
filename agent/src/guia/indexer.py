@@ -61,6 +61,7 @@ class QuartoIndexer:
             _metadata=[]
             for chunk in batch:
                 metadata = {
+                    'chunk_id': chunk['chunk_id'],  # Include chunk_id for evaluation matching
                     'file': chunk['title'],
                     'title': chunk['title'],
                     'section_header': chunk['section_header'],

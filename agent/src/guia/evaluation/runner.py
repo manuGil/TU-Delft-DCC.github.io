@@ -249,3 +249,5 @@ if __name__ == '__main__':
 
     # Run evaluation
     run_full_evaluation(indexer, dataset, args.output_dir, args.api_key)
+
+# TODO: define clear use cases. 

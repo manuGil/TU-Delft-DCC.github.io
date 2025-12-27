@@ -10,6 +10,7 @@ from guia.evaluation.retrieval_metrics import RetrievalEvaluator
 from guia.evaluation.e2e_evaluation import EndToEndEvaluator
 from guia.evaluation.perfomance_monitor import PerfomanceMonitor
 import argparse
+import sys
 
 def run_full_evaluation(
         indexer: QuartoIndexer,
@@ -43,6 +44,7 @@ def run_full_evaluation(
     print(f"  MRR:         {agg['mrr']['mean']:.3f} ± {agg['mrr']['std']:.3f}")
 
     # 2. End-to-End evaluation
+    e2e_results = None  # Initialize to avoid unbound variable
     if anthropic_api_key:
         print("\n2. Evaluating end-to-end answer quality...")
         e2e_eval = EndToEndEvaluator(indexer, anthropic_api_key)
@@ -232,7 +234,14 @@ if __name__ == '__main__':
         print("Sample dataset saved to test_dataset.json")
     
     # Load indexer
-    indexer = QuartoIndexer(persist_directory='./chroma_db')
+    # Add script directory to path for imports
+    SCRIPT_DIR = Path(__file__).parent.resolve()
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+    # initialize indexer with path relative to script location
+    CHROMA_PATH = SCRIPT_DIR.parent / "chroma_db"
+    print(f"CHROMA DIR: {CHROMA_PATH}")
+    indexer = QuartoIndexer(persist_directory=str(CHROMA_PATH))
 
     # Load test dataset
     dataset = TestDataset.load(args.test_data)

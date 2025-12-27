@@ -61,7 +61,7 @@ class RetrievalEvaluator:
                                 for doc in retrieved[:k]]
 
         # Ideal ranking (all relevant docs firts)
-        ideal_relevances = [1] * min(len(relevant), k) + [0] * max(0, k - len(relevant)))
+        ideal_relevances = [1] * min(len(relevant), k) + [0] * max(0, k - len(relevant))
 
         dcg_val = dcg(retrieved_relevances, k)
         idcg_val = dcg(ideal_relevances, k)

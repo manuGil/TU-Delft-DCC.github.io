@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     # test search
     print("\n--- Testing Search ---")
-    results = indexer.search("How do I renew SSL certificates?", n_results=3)
+    results = indexer.search("what does it mean to make research software FAIR?", n_results=3)
 
     print("results ids\n", results['ids'])
 

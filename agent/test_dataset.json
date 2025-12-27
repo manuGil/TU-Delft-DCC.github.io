@@ -1,0 +1,78 @@
+[
+  {
+    "question": "How do I renew SSL certificates?",
+    "expected_chunks": [
+      "infrastructure_ssl_certificates_6",
+      "infrastructure_ssl_certificates_0",
+      "infrastructure_ssl_certificates_3"
+    ],
+    "expected_answer_keywords": [
+      "SSL/TSL",
+      "renew",
+      "HARICA",
+      "certificate"
+    ],
+    "category": "certificates"
+  },
+  {
+    "question": "Where do I find information about SSL certificates?",
+    "expected_chunks": [
+      "infrastructure_ssl_certificates_0", 
+      "infrastructure_ssl_certificates_7", 
+      "infrastructure_ssl_certificates_1"
+    ],
+    "expected_answer_keywords": [
+      "SSL/TSL",
+      "encrypt",
+      "certificate"
+    ],
+    "category": "certificates"
+  },
+  {
+    "question": "How do I secure a web server?",
+    "expected_chunks": [
+      "infrastructure_web_servers_6", 
+      "infrastructure_web_servers_1", 
+      "infrastructure_web_servers_8"
+    ],
+    "expected_answer_keywords": [
+      "security",
+      "web server"
+    ],
+    "category": "security"
+  },
+  {
+    "question": "How can I make my research software FAIR?",
+    "expected_chunks": [
+      "software_fair_software_checklist_0", 
+      "software_fair_software_fair_0", 
+      "software_fair_software_fair_3"
+    ],
+    "expected_answer_keywords": [
+      "FAIR",
+      "software",
+      "research",
+      "principles"
+    ],
+    "category": "fair software"
+  },
+  {
+    "question": "What does it mean to make research software FAIR?",
+    "expected_chunks": [
+      "software_fair_software_checklist_0", 
+      "software_fair_software_fair_0", 
+      "software_getting_started_1"
+    ],
+    "expected_answer_keywords": [
+      "FAIR",
+      "software",
+      "research",
+      "best practices",
+      "findable",
+      "accessible",
+      "interoperable",
+      "reusable"
+    ],
+    "category": "fair software"
+  }
+]

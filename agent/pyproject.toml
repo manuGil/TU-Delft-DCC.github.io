@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "anthropic>=0.75.0",
     "chromadb>=1.4.0",
     "fastmcp>=2.14.1",
     "markdown>=3.10",

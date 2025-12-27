@@ -229,7 +229,7 @@ if __name__ == '__main__':
     if args.create_sample:
         print("Creating sample test dataset")
         create_sample_dataset()
-        print(f"Sample dataset saved to test_dataset.json")
+        print("Sample dataset saved to test_dataset.json")
     
     # Load indexer
     indexer = QuartoIndexer(persist_directory='./chroma_db')

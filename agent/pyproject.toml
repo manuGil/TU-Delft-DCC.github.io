@@ -9,6 +9,7 @@ dependencies = [
     "chromadb>=1.4.0",
     "fastmcp>=2.14.1",
     "markdown>=3.10",
+    "psutil>=7.2.0",
     "pyyaml>=6.0.3",
     "sentence-transformers>=5.2.0",
 ]

@@ -6,6 +6,7 @@ import time
 import psutil
 import functools
 from typing import Callable, Dict
+from pathlib import Path
 import json
 from datetime import datetime
 
@@ -69,10 +70,10 @@ class PerfomanceMonitor:
 
         }
     
-    def save_metrics(self, filepath: str):
-        """Same metrics to file"""
+    def save_metrics(self, filepath: str | Path):
+        """Save metrics to file"""
 
-        with open(filepath) as f:
+        with open(filepath, 'w') as f:
             json.dump(
                 {
                     'metrics': self.metrics,

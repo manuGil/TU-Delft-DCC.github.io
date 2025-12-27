@@ -35,11 +35,14 @@ def build_index(docs_path: str, persist_directory: str = DEFAULT_CHROMA_PATH):
 if __name__ == '__main__':
     DOCS_PATH = '/Users/mgarciaalvarez/devel/dcc-guides/docs'
 
-    indexer = build_index(DOCS_PATH)
+    # indexer = build_index(DOCS_PATH)
+    indexer = QuartoIndexer(DEFAULT_CHROMA_PATH)
 
     # test search
     print("\n--- Testing Search ---")
-    results = indexer.search("How do a renew SSL certificates?", n_results=3)
+    results = indexer.search("How do I renew SSL certificates?", n_results=3)
+
+    print("results ids\n", results['ids'])
 
     for i, (doc, metadata) in enumerate(zip(results['documents'][0],
                                             results['metadatas'][0])):
